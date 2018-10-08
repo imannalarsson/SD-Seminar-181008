@@ -2,7 +2,7 @@ table 50101 "CSD Seminar"
 //CSD1.00 - 2018-10-08 - D. E. Veloper
 //Chapter 5 - Lab 2-2
 {
-    Caption = 'Caption';
+    Caption = 'Seminar';
     LookupPageId = "CSD Seminar List";
     DrillDownPageId = "CSD Seminar List";
 
