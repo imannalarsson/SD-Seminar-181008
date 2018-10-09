@@ -12,54 +12,60 @@ page 50141 "CSD Mt Seminars"
             {
                 field("Seminar No."; "Seminar No.")
                 {
-                    ApplicationArea = All;
+
+                }
+                field(Name; Seminar.Name)
+                {
+
+                }
+                field(Duration; Seminar."Seminar Duration")
+                {
+
+                }
+                field(Price; Seminar."Seminar Price")
+                {
 
                 }
             }
         }
-        area(Factboxes)
-        {
 
-        }
     }
 
     actions
     {
         area(Processing)
         {
-            action(ActionName)
+            action(Open)
             {
-                ApplicationArea = All;
-
                 trigger OnAction();
                 begin
-
+                    OpenSeminarCard();
                 end;
             }
         }
     }
 
     var
-        "CSD Seminar": Record "CSD Seminar";
+        Seminar: Record "CSD Seminar";
 
     trigger OnOpenPage()
     begin
-        SetRange("User ID", UserId;
+        SetRange("User ID", UserId);
     end;
 
     trigger OnAfterGetRecord()
     begin
-        if "CSD Seminar".Get("Seminar No.") then;
+        if Seminar.Get("Seminar No.") then;
     end;
 
     trigger OnNewRecord(BelowxRec: Boolean)
     begin
-        Clear("CSD Seminar");
+        Clear(Seminar);
     end;
 
     local procedure OpenSeminarCard()
     begin
-        if "CSD Seminar"."No." <> '' then
-            Page.Run(page::"CSD Seminar Card", "CSD Seminar");
+        if Seminar."No." <> '' then
+            Page.Run(page::"CSD Seminar Card", Seminar);
     end;
 }
