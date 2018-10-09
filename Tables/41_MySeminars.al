@@ -1,17 +1,20 @@
-table 50141 "CSD My Seminar"
+table 50141 "My Seminars"
+// CSD1.00 - 2018-01-01 - D. E. Veloper
+//   Chapter 10 - Lab 1 - 3
+//     - Created new page
 {
-    Caption = 'My Seminars';
     DataClassification = ToBeClassified;
-
+    Caption='My Seminars';
+    
     fields
     {
-        field(10; "User ID"; Code[50])
+        field(10;"User Id";Code[50])
         {
-            Caption = 'User ID';
+            Caption = 'User Id';
+            TableRelation=User;
             DataClassification = ToBeClassified;
-            TableRelation = User;
         }
-        field(20; "Seminar No."; Code[20])
+        field(20;"Seminar No.";Code[20])
         {
             Caption = 'Seminar No.';
             TableRelation = "CSD Seminar";
@@ -21,10 +24,9 @@ table 50141 "CSD My Seminar"
 
     keys
     {
-        key(PK; "User ID", "Seminar No.")
+        key(PK;"User Id","Seminar No.")
         {
             Clustered = true;
         }
     }
-
 }

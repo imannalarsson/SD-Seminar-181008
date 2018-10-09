@@ -1,54 +1,51 @@
 page 50140 "CSD Seminar Manager Activities"
+// CSD1.00 - 2018-01-01 - D. E. Veloper
+//   Chapter 10 - Lab 1 - 2
+//     - Created new page
 {
     PageType = CardPart;
     SourceTable = "CSD Seminar Cue";
-    Caption = 'Seminar Manager Activities';
-    Editable = false;
+    Caption='Seminar Manager Activities';
 
     layout
     {
-        area(Content)
+        area(content)
         {
             cuegroup(Registrations)
             {
-                field(Planned; Planned)
+                Caption='Registrations';
+                field(Planned;Planned)
                 {
-                    Caption = 'Planned';
-
                 }
-                field(Registered; Registered)
+                field(Registered;Registered)
                 {
-                    Caption = 'Registered';
 
                 }
                 actions
                 {
                     action(New)
                     {
-                        Caption = 'New';
-                        RunObject = page "CSD Seminar Registration";
-                        RunPageMode = Create;
-
+                        Caption='New';
+                        RunObject=page "CSD Seminar Registration";
+                        RunPageMode=Create;
                     }
                 }
-            }
+            }                
             cuegroup("For Posting")
             {
-                field(Closed; Closed)
+                field(Closed;Closed)
                 {
 
                 }
             }
-
         }
     }
-
+    
     trigger OnOpenPage();
     begin
         if not get then begin
             init;
             insert;
-        end;
+        end;        
     end;
-
 }

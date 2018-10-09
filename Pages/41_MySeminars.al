@@ -1,71 +1,69 @@
-page 50141 "CSD Mt Seminars"
+page 50141 "My Seminars"
+// CSD1.00 - 2018-01-01 - D. E. Veloper
+//   Chapter 10 - Lab 1 - 4
+//     - Created new page
 {
-    PageType = ListPart;
-    SourceTable = "CSD My Seminar";
-    Caption = 'My Seminars';
+    PageType = Listpart;
+    SourceTable = "My Seminars";
+    Caption='My Seminars';
 
     layout
     {
-        area(Content)
+        area(content)
         {
             repeater(Group)
             {
-                field("Seminar No."; "Seminar No.")
+                field("Seminar No.";"Seminar No.")
                 {
-
                 }
-                field(Name; Seminar.Name)
+                field(Name;Seminar.Name)
                 {
-
                 }
-                field(Duration; Seminar."Seminar Duration")
+                field(Duration;Seminar."Seminar Duration")
                 {
-
                 }
-                field(Price; Seminar."Seminar Price")
+                field(Price;Seminar."Seminar Price")
                 {
-
                 }
             }
         }
-
     }
 
     actions
     {
-        area(Processing)
+        area(processing)
         {
             action(Open)
             {
                 trigger OnAction();
                 begin
-                    OpenSeminarCard();
+                    OpenSeminarCard;
                 end;
             }
         }
     }
-
+    
     var
-        Seminar: Record "CSD Seminar";
+        Seminar : Record "CSD Seminar";
 
-    trigger OnOpenPage()
+    trigger OnOpenPage();
     begin
-        SetRange("User ID", UserId);
+        SetRange("User Id",UserId);
     end;
 
-    trigger OnAfterGetRecord()
+    trigger OnAfterGetRecord();
     begin
-        if Seminar.Get("Seminar No.") then;
+        if Seminar.get("Seminar No.") then;
     end;
 
-    trigger OnNewRecord(BelowxRec: Boolean)
+    trigger OnNewRecord(BelowxRec : Boolean);
     begin
         Clear(Seminar);
     end;
 
-    local procedure OpenSeminarCard()
+    local procedure OpenSeminarCard();
     begin
-        if Seminar."No." <> '' then
-            Page.Run(page::"CSD Seminar Card", Seminar);
+        if Seminar."No."<>'' then
+          Page.Run(Page::"CSD Seminar Card",Seminar );
     end;
 }
