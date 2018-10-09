@@ -3,14 +3,13 @@ table 50110 "CSD Seminar Reg. Header"
     // CSD1.00 - 2018-01-01 - D. E. Veloper
     //   Chapter 6 - Lab 1-3 & Lab 1-4
     //     - Created new table
-
-    // Chapter 8 - Labg 2 - 3
-    //Added LookupPageId & DrilldownPageId properties
-
+    //   Chapter 8 - Lab 2-3
+    //     - Added LookupId and DrillDownPageId
+    //   Chapter 9 - Lab 1-1
+    //     - Added Field "No. Printed"
     Caption = 'Seminar Registration Header';
     LookupPageId = "CSD Posted Seminar Reg. List";
     DrillDownPageId = "CSD Posted Seminar Reg. List";
-
 
     Fields
     {
@@ -234,7 +233,7 @@ table 50110 "CSD Seminar Reg. Header"
         Field(22; Comment; Boolean)
         {
             Caption = 'Comment';
-            CalcFormula = Exist ("CSD Seminar Comment Line" where ("Table Name" = const ("Seminar Registration"),
+            CalcFormula = Exist ("CSD Seminar Comment Line" where ("Table Name" = const ("Seminar Registration Header"),
                                                               "No." = Field ("No.")));
             Editable = false;
             FieldClass = FlowField;
@@ -293,9 +292,6 @@ table 50110 "CSD Seminar Reg. Header"
         {
             Caption = 'Posting No.';
         }
-
-        // Chapter 9 - Lab 1-1
-        // - Added new field "No. Printed"
         field(40; "No. Printed"; Integer)
         {
             Caption = 'No. Printed';
@@ -352,7 +348,7 @@ table 50110 "CSD Seminar Reg. Header"
             ERROR(Text006, SeminarCharge.TableCaption);
 
         SeminarCommentLine.Reset;
-        SeminarCommentLine.SetRange("Table Name", SeminarCommentLine."Table Name"::"Seminar Registration");
+        SeminarCommentLine.SetRange("Table Name", SeminarCommentLine."Table Name"::"Seminar Registration Header");
         SeminarCommentLine.SetRange("No.", "No.");
         SeminarCommentLine.deleteALL;
     end;
@@ -365,14 +361,11 @@ table 50110 "CSD Seminar Reg. Header"
             NoSeriesMgt.InitSeries(SeminarSetup."Seminar Registration Nos.", xRec."No. Series", 0D, "No.", "No. Series");
         end;
         initrecord;
-
-        // >> Lab 8 1-1
+        // >> Lab 8-1
         if GetFilter("Seminar No.") <> '' then
-            if GetRangeMin("Seminar No.") = GetRangeMax("Seminar No.")
-            then
+            if GetRangeMin("Seminar No.") = GetRangeMax("Seminar No.") then
                 Validate("Seminar No.", GetRangeMin("Seminar No."));
-        // << Lab 8 1-1
-
+        // << Lab 8-1
     end;
 
     local procedure InitRecord();
