@@ -1,8 +1,11 @@
 report 50101 "CSD SeminarRegParticipantList"
 {
 
+    Caption = 'Seminar Reg. Participant List';
     UsageCategory = ReportsAndAnalysis;
     ApplicationArea = All;
+    DefaultLayout = RDLC;
+    RDLCLayout = './Layouts/SeminarRegParticipantList.rdl';
 
     dataset
     {
@@ -46,21 +49,24 @@ report 50101 "CSD SeminarRegParticipantList"
                 IncludeCaption = true;
 
             }
-            dataitem("CSD Posted Seminar Reg. Line"; "CSD Posted Seminar Reg. Line")
+            dataitem(SeminarRegistrationLine; "CSD Seminar Registration Line")
             {
                 DataItemTableView = sorting ("Document No.", "Line No.");
                 DataItemLink = "Document No." = field ("No.");
 
                 column(Bill_to_Customer_No_; "Bill-to Customer No.")
                 {
+                    IncludeCaption = true;
 
                 }
                 column(Participant_Contact_No_; "Participant Contact No.")
                 {
+                    IncludeCaption = true;
 
                 }
                 column(Participant_Name; "Participant Name")
                 {
+                    IncludeCaption = true;
 
                 }
 
