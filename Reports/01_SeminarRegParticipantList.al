@@ -80,10 +80,15 @@ report 50101 "CSD SeminarRegParticipantList"
             }
         }
     }
+    requestpage
+    {
+        
+    }
 
     labels
     {
         SeminarRegistrationHeaderCap = 'Seminar Registration List';
     }
+
 
 }
